@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ 'Receta médica' if tipo == 'receta' else 'Constancia médica' }} — Clínica Vida Plena</title>
+<style>
+  body{font-family:Georgia,'Times New Roman',serif;color:#241a3b;max-width:760px;margin:0 auto;padding:28px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #4a2a85;padding-bottom:12px;margin-bottom:22px}
+  h1{margin:0;color:#4a2a85;font-size:1.7rem} h2{margin:22px 0 8px;font-size:1.2rem;letter-spacing:.04em;text-transform:uppercase}
+  small,.muted{color:#6c6485} .box{border:1px solid #d9cff0;border-radius:10px;padding:14px 18px;margin:10px 0;white-space:pre-wrap}
+  .firma{margin-top:90px;text-align:center} .firma div{border-top:1px solid #241a3b;width:280px;margin:0 auto 6px}
+  .acciones{margin-bottom:20px} button{font:inherit;padding:10px 18px;border-radius:10px;border:0;background:#4a2a85;color:#fff;cursor:pointer}
+  @media print{.acciones{display:none} body{padding:0}}
+</style></head><body>
+<div class="acciones"><button onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button></div>
+<header><div><h1>✚ Clínica Vida Plena</h1><small>{{ clinica.direccion }} · Tel. {{ clinica.telefono }}</small></div>
+<div style="text-align:right"><b>{{ 'RECETA MÉDICA' if tipo == 'receta' else 'CONSTANCIA MÉDICA' }}</b><br><small>Consulta del {{ c.fecha }}</small></div></header>
+
+<p><b>Paciente:</b> {{ c.paciente }}<br><b>Identidad:</b> {{ c.identidad }}{% if c.fecha_nacimiento %} · <b>Nacimiento:</b> {{ c.fecha_nacimiento }}{% endif %}</p>
+
+{% if tipo == 'receta' %}
+  <h2>Indicaciones y tratamiento</h2>
+  <div class="box">{{ c.tratamiento or 'Sin tratamiento farmacológico indicado.' }}</div>
+  {% if c.observaciones %}<h2>Observaciones</h2><div class="box">{{ c.observaciones }}</div>{% endif %}
+{% else %}
+  <p style="margin-top:26px;line-height:1.7">Se hace constar que <b>{{ c.paciente }}</b>, con identidad <b>{{ c.identidad }}</b>, fue atendido(a) en consulta de
+  <b>{{ c.especialidad }}</b> en esta clínica el día <b>{{ c.fecha }}</b>.</p>
+  {% if c.observaciones %}<h2>Observaciones</h2><div class="box">{{ c.observaciones }}</div>{% endif %}
+  <p class="muted">Se extiende la presente a solicitud del interesado(a) para los fines que estime conveniente.</p>
+{% endif %}
+
+<div class="firma"><div></div><b>Dr(a). {{ c.doctor }}</b><br><small>{{ c.especialidad }}{% if c.colegiado %} · Colegiado {{ c.colegiado }}{% endif %}</small></div>
+<p class="muted" style="margin-top:40px;font-size:.8rem">Documento generado por el sistema de la Clínica Vida Plena (proyecto académico).</p>
+</body></html>

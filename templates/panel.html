@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel — Clínica Vida Plena</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%236428d6'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='white'/%3E%3C/svg%3E"></head>
+<body>
+<div id="login" class="login-wrap hide"><form class="login-box" id="login-form">
+  <div class="brand" style="margin-bottom:18px"><span class="logo">✚</span>Vida Plena</div>
+  <h1>Acceso del personal</h1><p style="color:var(--muted)">Ingresa con tu cuenta institucional.</p>
+  <label>Correo</label><input type="email" name="email" required autofocus>
+  <label>Contraseña</label><input type="password" name="password" required>
+  <button class="btn teal" style="width:100%;justify-content:center;margin-top:20px">Entrar</button>
+  <div class="msg bad hide" id="login-err"></div>
+  <p style="margin-top:14px;font-size:.85rem"><a href="/" style="color:var(--teal);text-decoration:underline">← Volver al sitio público</a></p>
+</form></div>
+
+<div id="app" class="app hide">
+  <aside class="side">
+    <div class="brand"><span class="logo">✚</span>Vida Plena</div>
+    <a data-v="dashboard">📊 Resumen</a><a data-v="citas">📅 Citas</a><a data-v="pacientes">🧑‍🤝‍🧑 Pacientes</a><a data-v="doctores">👨‍⚕️ Doctores</a>
+    <a data-v="calendario">🗓️ Calendario</a><a data-v="reportes" data-adm>📈 Reportes</a><a data-v="auditoria" data-adm>🛡️ Auditoría</a>
+    <div class="who"><b id="who-n"></b><br><span id="who-r" style="opacity:.75"></span><br><a id="logout" style="padding:6px 0;text-decoration:underline">Cerrar sesión</a></div>
+  </aside>
+  <main class="main" id="view"></main>
+</div>
+<div class="modal-bg" id="modal-bg"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+<script src="/static/js/panel.js"></script><script src="/static/js/fx.js"></script></body></html>
